@@ -7,20 +7,17 @@ function BusinessCalculator() {
   const [cost, setCost] = useState(0)
   const [result, setResult] = useState(null)
   const [isClicked, setIsClicked] = useState(false);
-  
-  const computeResult = ()=>{
+
+  const computeResult = () => {
     let modifiedAmount = amount
     let modifiedCost = cost
-    if(unit != costUnit){
-      console.log("mismatch")
-      if (unit === "quintal") modifiedAmount = amount * 100;
-      else modifiedCost = cost / 100
-    }
-    let adjustedAmount = (49*modifiedAmount) / 50 
+    if(unit === "quintal")modifiedAmount = modifiedAmount * 100;
+    if(costUnit === "quintal")modifiedCost = modifiedCost / 100;
+    let adjustedAmount = (49 * modifiedAmount) / 50
     let tempCost = (adjustedAmount * modifiedCost)
-    let deduction = (modifiedAmount/10) + (tempCost/100)
+    let deduction = (modifiedAmount / 10) + (tempCost / 100)
     tempCost = tempCost - deduction
-    setResult(prev=>tempCost.toFixed(2))  
+    setResult(prev => tempCost.toFixed(2))
   }
 
   return (
@@ -33,7 +30,16 @@ function BusinessCalculator() {
           </label>
           <div className='flex flex-row w-[60%] h-[100%]'>
             <input type="number" id='amount' className='bg-white rounded-l-md w-[60%] text-xl text-center outline-0 border-0'
-              value={amount} onChange={(e)=>{setResult(prev=>null);setAmount(prev=>e.target.value)}}
+              value={amount} 
+              onChange={(e) => {
+                let inputValue = e.target.value;
+                // Remove leading zero unless it's "0" alone
+                if (inputValue.length > 1 && inputValue.startsWith("0")) {
+                  inputValue = inputValue.replace(/^0+/, "");
+                }
+                setResult(prev => null);
+                setAmount(prev => inputValue)
+              }}
             />
             <select value={unit} onChange={(e) => { setUnit(prev => e.target.value); }} className='bg-white font-serif text-center text-xl rounded-r-md outline-0 border-0 w-[40%]' >
               <option value="kg">Kg</option>
@@ -46,8 +52,16 @@ function BusinessCalculator() {
             Cost
           </label>
           <div className='flex flex-row w-[60%] h-[100%]'>
-            <input type="number" id='cost' className='bg-white rounded-l-md w-[60%] text-xl text-center outline-0 border-0' 
-              value={cost} onChange={(e)=>{setResult(prev=>null);setCost(prev=>e.target.value)}}
+            <input type="number" id='cost' className='bg-white rounded-l-md w-[60%] text-xl text-center outline-0 border-0'
+              value={cost} onChange={(e) => {
+                let inputValue = e.target.value;
+                // Remove leading zero unless it's "0" alone
+                if (inputValue.length > 1 && inputValue.startsWith("0")) {
+                  inputValue = inputValue.replace(/^0+/, "");
+                }
+                setResult(prev => null);
+                setCost(prev => inputValue)
+              }}
             />
             <select value={costUnit} onChange={(e) => { setCostUnit(prev => e.target.value); }} className='bg-white font-serif text-center text-xl rounded-r-md outline-0 border-0 w-[40%]' >
               <option value="kg">Per Kg</option>
