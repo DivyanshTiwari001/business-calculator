@@ -26,7 +26,7 @@ function BusinessCalculator() {
       <div className='w-screen sm:w-[45%] h-[60%] p-2 bg-orange-400 mt-5 rounded-xl shadow-xl flex flex-col gap-10 justify-center items-center'>
         <div className="w-[100%] md:w-[80%] h-[40px] flex flex-row justify-between items-center">
           <label htmlFor="amount" className='text-2xl font-bold font-serif w-[35%] md:w-[40%]'>
-            Amount
+            Weight
           </label>
           <div className='flex flex-row w-[80%] sm:w-[60%] h-[100%]'>
             <input type="number" id='amount' className='bg-white rounded-l-md w-[60%] text-xl text-center outline-0 border-0'
@@ -49,7 +49,7 @@ function BusinessCalculator() {
         </div>
         <div className="w-[100%] sm:w-[80%] h-[40px] flex flex-row justify-between items-center">
           <label htmlFor="cost" className='text-2xl font-bold font-serif w-[35%] sm:w-[40%]'>
-            Cost
+            Rate
           </label>
           <div className='flex flex-row w-[80%] sm:w-[60%] h-[100%]'>
             <input type="number" id='cost' className='bg-white rounded-l-md w-[60%] text-xl text-center outline-0 border-0'
